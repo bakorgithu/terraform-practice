@@ -9,6 +9,7 @@ Learn and practice foundational DevOps skills.
 Experiment with tools like Git, Docker, Kubernetes, Terraform, CI/CD pipelines, and more.
 Build and deploy simple applications to understand automation and infrastructure as code.
 Collaborate effectively using version control and best practices.
+
 Prerequisites
 Before starting, make sure you have:
 
