@@ -7,7 +7,7 @@ default = "ami-0df8c184d5f6ae949"
 
 variable "instance_type" {
     type = string
-    default = "t3.micro"  
+    default = "t2.micro"  
 }
 
 variable "instance_name" {

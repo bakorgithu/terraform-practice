@@ -13,6 +13,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh_ipv4" {
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
+  cidr_ipv4         = "0.0.0.0/0"
 }
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_traffic_ipv4" {
