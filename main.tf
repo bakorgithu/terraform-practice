@@ -1,7 +1,7 @@
 ## Module
 
 module "ec2_module" {
-    source         = "./module/ec2"
+    source         = "./terraform_102/module/ec2"
     instance_type  = var.instance_type
     key_name       = var.key_name
     instance_name  = var.instance_name
