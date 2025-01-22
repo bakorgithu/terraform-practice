@@ -56,7 +56,6 @@ resource "aws_route_table" "bakorroute" {
     gateway_id = aws_internet_gateway.bakorgw.id
   }
 
-  
   tags = {
     Name = "ivo-routetable"
   }
