@@ -12,7 +12,7 @@ variable "instance_type" {
 
 variable "instance_name" {
     type = string
-    default = "bakor"
+    default = "bakor-ec2"
 }
 
 variable "region" {
@@ -26,6 +26,7 @@ variable "key_name" {
 
 variable "role_name" {
     type = string
+    default = "ec2-role-production"
 }
 
 variable "policy_name" {
@@ -37,7 +38,9 @@ variable "instance_profile_name" {
 }
 
 variable "aws_iam_role_policy" {
-    type = string
+  type = string
+  description = "Define the inline policy"
+  default = null
 }
 
 variable "assume_role_policy" {
@@ -46,4 +49,15 @@ variable "assume_role_policy" {
 
 variable "policy_arn" {
   type = string
+  description = "AWS managed policy attachment to an iam role"
+  default = null
+}
+
+variable "vpc_id" {
+  type = string
+}
+
+variable "subnet_id" {
+  type = string
+  default = "aws_subnet.public-subnet-1"
 }

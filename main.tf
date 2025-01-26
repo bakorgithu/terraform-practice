@@ -1,16 +1,25 @@
 ## Module
 
+module "vpc_module" {
+  source       = "./terraform_102/module/vpc"
+  aws_vpc_name = var.aws_vpc_name
+  region = var.region
+}
+
+
 module "ec2_module" {
-    source         = "./terraform_102/module/ec2"
-    instance_type  = var.instance_type
-    key_name       = var.key_name
-    instance_name  = var.instance_name
-    policy_arn = var.policy_arn
-    policy_name = var.policy_name
-    role_name = var.role_name
-    aws_iam_role_policy = var.aws_iam_role_policy
-    instance_profile_name = var.instance_profile_name
-    assume_role_policy = jsonencode({
+  source                = "./terraform_102/module/ec2"
+  instance_name         = var.instance_name
+  role_name             = var.role_name
+  policy_name           = var.policy_name
+  instance_type         = var.instance_type
+  key_name              = var.key_name
+  instance_profile_name = var.instance_profile_name
+  vpc_id = module.vpc_module.vpcid
+  subnet_id = module.vpc_module.publicsubnet1id
+  policy_arn            = "arn:aws:iam::aws:policy/job-function/Billing" # Optional as default value is null
+  aws_iam_role_policy   = file("s3 policy.json")
+  assume_role_policy = jsonencode({
     Version = "2012-10-17",
     Statement = [
       {

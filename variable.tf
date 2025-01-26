@@ -40,3 +40,7 @@ variable "instance_name" {
   type = string
   
 }
+
+variable "aws_vpc_name" {
+  type = string
+}
