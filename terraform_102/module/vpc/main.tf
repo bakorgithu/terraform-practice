@@ -1,11 +1,11 @@
 ## VPC
 
 resource "aws_vpc" "bakorvpc" {
-cidr_block = "10.0.0.0/8"
-instance_tenancy = "default"
+cidr_block = var.cidr_block_vpc
+instance_tenancy = var.instance_tenancy
 
 tags = {
-    name = "ivo-vpc"
+    name = var.aws_vpc_name
  }
 }
 
@@ -13,25 +13,25 @@ tags = {
 
 resource "aws_subnet" "public-subnet-1" {
   vpc_id     = aws_vpc.bakorvpc.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.cidr_block_pub-subnet-1
   availability_zone = "${var.region}a"
   map_public_ip_on_launch = true
 
   tags = {
-    Name = "ivo-subnet-1"
+    Name = var.name_pub_subnet-1
   }
 }
 
 resource "aws_subnet" "public-subnet-2" {
   vpc_id     = aws_vpc.bakorvpc.id
-  cidr_block = "10.0.3.0/24"
+  cidr_block = var.cidr_block_pub_subnet-2
   availability_zone = "${var.region}b"
    map_public_ip_on_launch = true
 
 
 
   tags = {
-    Name = "ivo-subnet-2"
+    Name = var.name_pub_subnet-2
   }
 }
 
@@ -42,7 +42,7 @@ resource "aws_internet_gateway" "bakorgw" {
   vpc_id = aws_vpc.bakorvpc.id
 
   tags = {
-    Name = "ivo-gateway"
+    Name = var.name_igw
   }
 }
 
@@ -52,12 +52,12 @@ resource "aws_route_table" "bakorroute" {
   vpc_id = aws_vpc.bakorvpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = var.cidr_block_rtb_pubsubnet
     gateway_id = aws_internet_gateway.bakorgw.id
   }
 
   tags = {
-    Name = "ivo-routetable"
+    Name = var.rtb_name_pubsubnet
   }
 }
 
