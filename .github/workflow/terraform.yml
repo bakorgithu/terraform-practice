@@ -5,6 +5,9 @@ on:
     branches:
       - feature/cicd 
       - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   init:
