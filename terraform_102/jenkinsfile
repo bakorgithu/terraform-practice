@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    environment {
+      AWS_DEFAULT_REGION = "us-east-1"
+      CREDENTIALS = credentials('bakor-aws-credentials')
+    }
+    stages{
+        stage('checkout'){
+            steps {
+                sh 'rm -rf ./*'
+                sh 'git clone https://github.com/bakorgithu/terraform-practice.git'
+                sh 'cd ./terraform-practice && git checkout feature/jenkins'
+            }
+        }
+        stage('Confirm') {
+            steps {
+                sh 'echo git repo cloned successfully'
+            }
+        }
+        
+        stage('Terraform init') {
+            steps {
+                sh 'cd ./terraform-practice/terraform_102 && terraform init'
+            }
+        }
+        
+        stage('Terraform validate') {
+            steps {
+                sh '''
+                cd ./terraform-practice/terraform_102
+                terraform validate
+                '''
+            }
+        }
+
+        stage('Terraform plan') {
+            steps {
+
+                sh '''
+                cd ./terraform-practice/terraform_102 
+                terraform plan -var-file="dev.tfvars"
+                '''
+                      
+            }
+        }
+    }
+}
