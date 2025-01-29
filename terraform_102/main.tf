@@ -1,14 +1,14 @@
 ## Module
 
 module "vpc_module" {
-  source       = "./terraform_102/module/vpc"
+  source       = "./module/vpc"
   aws_vpc_name = var.aws_vpc_name
   region = var.region
 }
 
 
 module "ec2_module" {
-  source                = "./terraform_102/module/ec2"
+  source                = "./module/ec2"
   instance_name         = var.instance_name
   role_name             = var.role_name
   policy_name           = var.policy_name
