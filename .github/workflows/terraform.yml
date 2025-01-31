@@ -30,7 +30,8 @@ jobs:
       - name: Terraform Init
         id: init-step
         run: 
-         cd ./terraform_102 && terraform init
+         cd ./terraform_102 && terraform init -backend-config="bucket=${{secrets.BUCKET}}" -backend-config="key=${{secrets.KEY}}" -backend-config="region=${{secrets.AWS_REGION}}"
+
 
       - name: Upload Terraform Folder
         uses: actions/upload-artifact@v4
