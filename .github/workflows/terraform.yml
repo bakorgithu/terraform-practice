@@ -3,14 +3,9 @@ name: Terraform Workflow
 on:
   push:
     branches:
-      - '**' # Triggers for all branches
-
-  pull_request:
-    branches:
+      - feature/cicd 
       - main
-permissions:
-  id-token: write
-  
+
 jobs:
   init:
     runs-on: ubuntu-latest
@@ -30,8 +25,7 @@ jobs:
       - name: Terraform Init
         id: init-step
         run: 
-         cd ./terraform_102 && terraform init -backend-config="bucket=${{secrets.BUCKET}}" -backend-config="key=${{secrets.KEY}}" -backend-config="region=${{secrets.AWS_REGION}}"
-
+         cd ./terraform_102 && terraform init
 
       - name: Upload Terraform Folder
         uses: actions/upload-artifact@v4
@@ -105,13 +99,9 @@ jobs:
         run: 
           cd ./terraform_102 && terraform init
 
-      - name: Terraform validate
-        run: 
-          cd ./terraform_102 && terraform validate 
-
       - name: Terraform plan
         run: 
-           cd ./terraform_101 && terraform plan
+           cd ./terraform_102 && terraform plan
 
     
 
