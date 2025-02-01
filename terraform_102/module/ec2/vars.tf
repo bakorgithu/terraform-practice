@@ -55,7 +55,7 @@ variable "assume_role_policy" {
 variable "policy_arn" {
   type = string
   description = "AWS managed policy attachment to an iam role"
-  default = null
+  default = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
 variable "vpc_id" {
