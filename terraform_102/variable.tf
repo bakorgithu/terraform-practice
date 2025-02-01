@@ -6,6 +6,7 @@ variable "region" {
 
 variable "policy_arn" {
   type = string
+  default = null
 }
 
 variable "policy_name" {
