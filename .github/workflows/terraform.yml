@@ -77,9 +77,11 @@ jobs:
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-region: ${{secrets.AWS_REGION}}
+          role-to-assume: arn:aws:iam::${{secrets.AWS_ID}}:role/github_actions
+          role-session-name: githubactions
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v2
@@ -98,7 +100,7 @@ jobs:
 
       - name: Terraform init
         run: 
-          cd ./terraform_102 && terraform init
+          cd ./terraform_102 && terraform init 
 
       - name: Terraform plan
         run: 
