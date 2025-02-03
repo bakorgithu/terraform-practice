@@ -6,6 +6,7 @@ variable "region" {
 
 variable "policy_arn" {
   type = string
+  default = null
 }
 
 variable "policy_name" {
@@ -17,11 +18,12 @@ variable "role_name" {
 }
 
 variable "assume_role_policy" {
-    type = string
+default = null
 }
 
 variable "aws_iam_role_policy" {
     type = string
+    default = null
 }
 
 variable "instance_profile_name" {
