@@ -20,14 +20,14 @@ pipeline {
         
         stage('Terraform init') {
             steps {
-                sh 'cd ./terraform-practice/terraform_102 && terraform init'
+                sh 'cd ./terraform-practice && terraform init'
             }
         }
         
         stage('Terraform validate') {
             steps {
                 sh '''
-                cd ./terraform-practice/terraform_102
+                cd ./terraform-practice
                 terraform validate
                 '''
             }
@@ -37,7 +37,7 @@ pipeline {
             steps {
 
                 sh '''
-                cd ./terraform-practice/terraform_102 
+                cd ./terraform-practice
                 terraform plan -var-file="dev.tfvars"
                 '''
                       
