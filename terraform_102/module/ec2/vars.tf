@@ -22,6 +22,7 @@ variable "region" {
 
 variable "key_name" {
     type = string
+    default = "bakor_test"
 }
 
 variable "role_name" {
@@ -31,10 +32,13 @@ variable "role_name" {
 
 variable "policy_name" {
     type = string
+    default = "ivo-access-policy"
+
 }
 
 variable "instance_profile_name" {
     type = string
+    default = "ec2_instance_profile"
 }
 
 variable "aws_iam_role_policy" {
@@ -45,6 +49,7 @@ variable "aws_iam_role_policy" {
 
 variable "assume_role_policy" {
     type = string
+    default = null
 }
 
 variable "policy_arn" {
@@ -55,6 +60,7 @@ variable "policy_arn" {
 
 variable "vpc_id" {
   type = string
+  default = null
 }
 
 variable "subnet_id" {

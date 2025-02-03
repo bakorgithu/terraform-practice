@@ -1,0 +1,6 @@
+terraform_102/**/.terraform/
+terraform_102/**/.terraform/*
+terraform_102/**/.terraform.*
+terraform_102/**/terraform.tfstate.*
+outputs
+terraform_102/terraform.tfstate
